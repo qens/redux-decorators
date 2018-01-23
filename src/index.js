@@ -1,6 +1,6 @@
-export function Redux(target) {
+export function Reducer(target) {
     target.reducers = target.reducers || new Map();
-    target.reducer = function(state = {}, action) {
+    target.reducer = function (state = {}, action) {
         const reducer = target.reducers.get(action.type);
         return reducer ? reducer(state, action) : state;
     }
@@ -16,6 +16,29 @@ export function Action(actionType, reducer) {
                 type: actionType,
                 payload
             };
-        }, {ACTION: actionType});
+        }, { ACTION: actionType });
+    }
+}
+
+const statuses = ['REQUEST', 'SUCCESS', 'FAILURE'];
+const defaultReducer = state => state;
+export function AsyncAction(actionType, ...reducers) {
+    return function decorator(target, name, descriptor) {
+        target.reducers = target.reducers || new Map();
+        const actions = {};
+        const requestAction = statuses.map((s, i) => {
+            actions[s] = `${actionType}_${s}`;
+            actions[s.toLocaleLowerCase()] = function (payload) {
+                return {
+                    type: actions[s],
+                    payload
+                };
+            }
+            target.reducers.set(actions[s], reducers[i] || defaultReducer);
+            return actions[s.toLocaleLowerCase()];
+        })[0];
+
+        descriptor.value = Object.assign(requestAction, actions);
+
     }
 }
