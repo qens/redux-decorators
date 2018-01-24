@@ -2,8 +2,36 @@
   "name": "redux-decorators",
   "version": "0.0.1",
   "private": false,
+  "description": "A library for making development with redux more comfortable and efficient via decorators.",
+  "keywords": [
+    "redux",
+    "decorators",
+    "decorator",
+    "reducer",
+    "form",
+    "redux-form",
+    "react",
+    "react-redux",
+    "flux",
+    "saga",
+    "submit"
+  ],
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:qens/redux-decorators.git"
+  },
+  "author": "Dan Bul <qens007@gmail.com>",
+  "bugs": {
+    "url": "https://github.com/qens/redux-decorators/issues"
+  },
   "scripts": {
-    "test": "karma start"
+    "test": "karma start",
+    "build": "npm run build:cjs && npm run build:es",
+    "build:cjs": "cross-env BABEL_ENV=development babel src/ --out-dir lib",
+    "build:es": "cross-env BABEL_ENV=es babel src/ --out-dir es",
+    "prepare": "npm run build"
   },
   "dependencies": {
     "immutable": "^3.8.2",
@@ -27,6 +55,7 @@
     "babel-polyfill": "^6.26.0",
     "babel-preset-es2015": "^6.22.0",
     "babel-preset-react": "^6.22.0",
+    "cross-env": "^5.1.3",
     "expect": "^22.1.0",
     "karma": "^2.0.0",
     "karma-chrome-launcher": "^2.2.0",
@@ -40,5 +69,6 @@
     "webpack-config": "^7.0.0",
     "webpack-dev-middleware": "^1.7.0",
     "webpack-hot-middleware": "^2.12.2"
-  }
+  },
+  "license": "MIT"
 }
