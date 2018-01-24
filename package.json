@@ -1,5 +1,5 @@
 {
-  "name": "redux-decorators",
+  "name": "redux-via-decorators",
   "version": "0.0.1",
   "private": false,
   "description": "A library for making development with redux more comfortable and efficient via decorators.",
