@@ -1,5 +1,6 @@
 # redux-decorators
 A library for making development with redux more comfortable and efficient via decorators.
+Inspired by https://github.com/mhssmnn/redux-form-saga
 
 ```javascript
 npm install --save redux-via-decorators
