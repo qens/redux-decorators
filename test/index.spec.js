@@ -34,6 +34,11 @@ describe('Reducer and Action', () => {
         expect(service.getData(payload)).toEqual({type: 'GET_DATA', payload: payload});
     });
 
+    it('should reducer be a function', () => {
+        expect(service.reducer).toBeTruthy();
+        expect(service.reducer).toBeInstanceOf(Function);
+    })
+
 });
 
 describe('AsyncAction', () => {

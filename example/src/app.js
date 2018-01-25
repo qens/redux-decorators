@@ -2,6 +2,7 @@ import React from 'react';
 import {Link, Route, Switch} from "react-router-dom";
 import {Nav, Navbar, NavItem} from "react-bootstrap";
 import {WithoutPage} from "./without";
+import {WithPage} from "./with";
 
 const MainNav = () => <Navbar collapseOnSelect>
     <Navbar.Header>
@@ -30,5 +31,6 @@ export default () => <div>
     {/*<h1>Hello world!</h1>*/}
     <Switch>
         <Route exact path="/without" component={WithoutPage}/>
+        <Route exact path="/with" component={WithPage}/>
     </Switch>
 </div>;
