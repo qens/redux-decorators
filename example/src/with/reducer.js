@@ -7,10 +7,10 @@ const initialState = fromJS({
     trigger: false
 });
 
-@Reducer
+@Reducer(initialState)
 class WithReducer {
 
-    @Action(`${reducerName}/TRIGGER`, (state = initialState, action) => state.set('trigger', action.payload))
+    @Action(`${reducerName}/TRIGGER`, (state, action) => state.set('trigger', action.payload))
     trigger() {
     }
 }
