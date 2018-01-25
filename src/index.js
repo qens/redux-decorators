@@ -1,8 +1,10 @@
-export function Reducer(target) {
-    target.reducers = target.reducers || new Map();
-    target.reducer = function (state = {}, action) {
-        const reducer = target.reducers.get(action.type);
-        return reducer ? reducer(state, action) : state;
+export function Reducer(initialState) {
+    return function decorator(target) {
+        target.prototype.reducers = target.prototype.reducers || new Map();
+        target.prototype.reducer = function (state = initialState, action) {
+            const reducer = target.prototype.reducers.get(action.type);
+            return reducer ? reducer(state, action) : state;
+        }
     }
 }
 

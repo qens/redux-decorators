@@ -12,7 +12,7 @@ describe('Reducer and Action', () => {
 
     beforeEach(() => {
 
-        @Reducer
+        @Reducer({})
         class TestService {
 
             @Action('GET_DATA', (state, action) => state.set('data', fromJS(action.payload)))
@@ -46,7 +46,7 @@ describe('AsyncAction', () => {
 
     beforeEach(() => {
 
-        @Reducer
+        @Reducer({})
         class TestService {
 
             @AsyncAction('GET_ASYNC_DATA',
