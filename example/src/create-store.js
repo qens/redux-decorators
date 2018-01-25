@@ -4,7 +4,7 @@ import logger from 'redux-logger';
 import {reducer as formReducer} from 'redux-form'
 import formActionSaga from 'redux-form-saga';
 // import saga from './services/saga';
-// import reducer, {reducerName} from './services/reducer';
+import withoutReducer, {reducerName as withoutReducerName} from './without/reducer';
 
 const createAppStore = (reducer, emmiterMiddleware) => {
     const sagaMiddleware = createSagaMiddleware();
@@ -19,7 +19,7 @@ const createAppStore = (reducer, emmiterMiddleware) => {
 
 
 export const rootReducer = combineReducers({
-    // [reducerName]: reducer,
+    [withoutReducerName]: withoutReducer,
     form: formReducer
 });
 

@@ -1,0 +1,1 @@
+export {default as WithoutPage} from './without-page';
