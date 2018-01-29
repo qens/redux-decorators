@@ -11,6 +11,17 @@ app.use(bodyParser.urlencoded());
 
 const PUBLIC_PATH = path.join(__dirname, 'public');
 
+app.route('/api/login')
+    .post(function (req, res) {
+        const {username, password} = req.body;
+        if (username === 'admin' && password === 'admin') {
+            res.json({username, password});
+        } else {
+            res.json({error: 'Invalid username or password'});
+        }
+    });
+
+
 const isDevelopment = process.env.NODE_ENV === 'development';
 
 if (isDevelopment) {
@@ -24,25 +35,25 @@ if (isDevelopment) {
         }
     }));
     app.use(require('webpack-hot-middleware')(compiler));
+    // Redirect all non api requests to the index
+    app.use('*', function (req, res, next) {
+        var filename = path.join(compiler.outputPath, 'index.html');
+        compiler.outputFileSystem.readFile(filename, function (err, result) {
+            if (err) {
+                return next(err);
+            }
+            res.set('content-type', 'text/html');
+            res.send(result);
+            res.end();
+        });
+    });
 } else {
     app.use(express.static(PUBLIC_PATH));
-}
-
-app.route('/api/login')
-    .post(function(req, res) {
-        const {username, password} = req.body;
-       if (username === 'admin' && password === 'admin') {
-           res.json({username, password});
-       } else {
-           res.json({error: 'Invalid username or password'});
-       }
+    // Redirect all non api requests to the index
+    app.get('*', function (req, res) {
+        res.sendFile(path.join(__dirname, 'public', 'index.html'));
     });
-
-
-// Redirect all non api requests to the index
-app.get('*', function(req, res) {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
-});
+}
 
 // Starting express server
 http.createServer(app).listen(app.get('port'), function () {
