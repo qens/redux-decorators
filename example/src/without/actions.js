@@ -6,3 +6,9 @@ export function triggerAction(payload) {
         payload
     };
 }
+
+export function getDataAction() {
+    return {
+        type: actionTypes.GET_DATA_REQUEST
+    }
+}

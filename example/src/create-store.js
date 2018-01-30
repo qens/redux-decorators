@@ -7,6 +7,7 @@ import withoutReducer, {reducerName as withoutReducerName} from './without/reduc
 import {withReducer, reducerName as withReducerName} from "./with/reducer";
 import {withSaga} from "./with";
 import {reduxFormActionSaga} from "redux-via-decorators/lib/saga";
+import {withoutSaga} from "./without";
 
 const createAppStore = (reducer, emmiterMiddleware) => {
     const sagaMiddleware = createSagaMiddleware();
@@ -14,6 +15,7 @@ const createAppStore = (reducer, emmiterMiddleware) => {
     const store = createStore(reducer, undefined, applyMiddleware(logger, sagaMiddleware));
 
     sagaMiddleware.run(withSaga);
+    sagaMiddleware.run(withoutSaga);
     sagaMiddleware.run(reduxFormActionSaga);
     sagaMiddleware.run(formActionSaga);
 

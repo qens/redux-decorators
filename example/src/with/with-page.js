@@ -31,7 +31,7 @@ class WithoutPage extends React.Component {
 
         return <div>
             {loading ? <span>loading...</span> : null}
-            {data && data.map(item => <div>{item}</div>)}
+            {data && data.map((item, key) => <div key={key}>{item}</div>)}
         </div>;
     }
 
