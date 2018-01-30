@@ -26,6 +26,12 @@ app.route('/api/login')
         }
     });
 
+app.route('/api/data')
+    .get(function (req, res) {
+        setTimeout(() =>
+            res.json(['John', 'Doe', 'Or', 'Someone', 'Else']), 3000);
+    });
+
 
 const isDevelopment = process.env.NODE_ENV === 'development';
 

@@ -18,6 +18,16 @@ function* login({payload}) {
     }
 }
 
+function* getData() {
+    try {
+        const data = yield call(api.getData);
+        yield put(withReducer.getData.success(data));
+    } catch (err) {
+        yield put(withReducer.getData.failure(err));
+    }
+}
+
 export default function* () {
     yield takeEvery(withReducer.login.REQUEST, login);
+    yield takeEvery(withReducer.getData.REQUEST, getData);
 }
