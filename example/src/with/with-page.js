@@ -6,7 +6,7 @@ import {reducerName, withReducer} from "./reducer";
 import {Field, Form, reduxForm} from "redux-form";
 import {FieldTypes, reduxFormField} from "../common/redux-form-field";
 
-class WithoutPage extends React.Component {
+class WithoutPage extends React.PureComponent {
 
     componentDidMount() {
         this.props.getData();

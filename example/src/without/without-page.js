@@ -6,7 +6,7 @@ import {reducerName} from "./reducer";
 import {triggerAction, getDataAction} from "./actions";
 import {withReducer} from "../with/reducer";
 
-class WithoutPage extends React.Component {
+class WithoutPage extends React.PureComponent {
 
     componentDidMount() {
         this.props.getData();
