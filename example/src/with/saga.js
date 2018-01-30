@@ -7,9 +7,9 @@ import {SubmissionError} from "redux-form";
 function* login({payload}) {
     const {username, password} = payload;
     try {
-        const {error} = yield call(api.login, username, password);
-        if (error) {
-            yield put(withReducer.login.failure(new SubmissionError(error)));
+        const {errors} = yield call(api.login, username, password);
+        if (errors) {
+            yield put(withReducer.login.failure(new SubmissionError(errors)));
         } else {
             yield put(withReducer.login.success(username));
         }

@@ -17,7 +17,12 @@ app.route('/api/login')
         if (username === 'admin' && password === 'admin') {
             res.json({username, password});
         } else {
-            res.json({error: 'Invalid username or password'});
+            res.json({
+                errors: {
+                    username: 'an error for username',
+                    password: 'an error for password'
+                }
+            });
         }
     });
 

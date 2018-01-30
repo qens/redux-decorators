@@ -37,7 +37,7 @@ describe('Reducer and Action', () => {
     it('should reducer be a function', () => {
         expect(service.reducer).toBeTruthy();
         expect(service.reducer).toBeInstanceOf(Function);
-    })
+    });
 
 });
 
