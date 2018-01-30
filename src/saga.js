@@ -6,7 +6,7 @@ const REDUX_FORM_ACTION_TYPE = '@@saga-redux-form-action/PROMISE';
 
 function SagaReduxFormAction(actionType, ...reducers) {
     return function decorator(target, name, descriptor) {
-        target.reducers = target.reducers || new Map();
+        target._reducers = target._reducers || new Map();
         const actions = {};
         const requestAction = statuses.map((s, i) => {
             actions[s] = `${actionType}_${s}`;
@@ -16,7 +16,7 @@ function SagaReduxFormAction(actionType, ...reducers) {
                     payload
                 };
             };
-            target.reducers.set(actions[s], reducers[i] || defaultReducer);
+            target._reducers.set(actions[s], reducers[i] || defaultReducer);
             return actions[s.toLocaleLowerCase()];
         })[0];
 

@@ -24,8 +24,8 @@ describe('Reducer and Action', () => {
     });
 
     it('should have filled reducers map', () => {
-        expect(service.reducers).toBeTruthy();
-        expect(service.reducers.size).toEqual(1);
+        expect(service._reducers).toBeTruthy();
+        expect(service._reducers.size).toEqual(1);
     });
 
     it('should change result of decorated method', () => {
@@ -62,8 +62,8 @@ describe('AsyncAction', () => {
     });
 
     it('should have filled reducers map', () => {
-        expect(service.reducers).toBeTruthy();
-        expect(service.reducers.size).toEqual(3);
+        expect(service._reducers).toBeTruthy();
+        expect(service._reducers.size).toEqual(3);
     });
 
     it('should change result of decorated method', () => {
