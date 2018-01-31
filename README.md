@@ -109,7 +109,7 @@ Just create a service as a class
 
 ```
 
-###@Action
+### @Action
 ```javascript
     @Action('GET_DATA', (state, action) => state.set('data', fromJS(action.payload)))
     getData() {
@@ -120,7 +120,7 @@ Just create a service as a class
 ```
 
 
-###@AsyncAction
+### @AsyncAction
 ```javascript
     @AsyncAction(
         // ActionType
@@ -145,7 +145,8 @@ Just create a service as a class
     .getAsyncData.failure(payload) === { type: 'GET_ASYNC_DATA_FAILURE', payload };
 ```
 
-###@SagaReduxFormAction
+### @SagaReduxFormAction
+The idea of this decorator comes from https://github.com/mhssmnn/redux-form-saga, more information could be found there.
 ```javascript
     @AsyncAction(
         // ActionType
@@ -170,7 +171,7 @@ Just create a service as a class
     .getAsyncData.failure(payload) === { type: 'REDUX_FORM_ACTION_FAILURE', payload };
 ```
 
-###@Reducer
+### @Reducer
 ```javascript
     This decorator for class, create a property "_reducers" to store sub reducers,
     and added method "reducer", which should be combined with others and included in app
