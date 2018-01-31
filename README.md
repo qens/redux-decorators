@@ -70,6 +70,29 @@ Just create a service as a class
     }
 
     export const testService = new TestService();
+
+    // component.js
+    export default connect(mapStateToProps, dispatch => {
+        return {
+            getData: bindActionCreators(testService.getAsyncData, dispatch),
+            // or testService.getAsyncData.request
+            ...
+        };
+    })(Component);
+
+    // saga.js
+    function* getData() {
+        try {
+            const data = yield call(api.getData);
+            yield put(testService.getAsyncData.success(data));
+        } catch (err) {
+            yield put(testService.getAsyncData.failure(err));
+        }
+    }
+
+    export default function* () {
+        yield takeEvery(testService.getAsyncData.REQUEST, getData);
+    }
 ```
 
 @Reducer will provide a method reducer which you need to combine with others
@@ -84,4 +107,77 @@ Just create a service as a class
 
     });
 
+```
+
+###@Action
+```javascript
+    @Action('GET_DATA', (state, action) => state.set('data', fromJS(action.payload)))
+    getData() {
+    }
+
+    .getData(payload) === {type: 'GET_DATA', payload}
+    .getData.ACTION === 'GET_DATA'
+```
+
+
+###@AsyncAction
+```javascript
+    @AsyncAction(
+        // ActionType
+        'GET_ASYNC_DATA',
+        // request handler
+        (state, action) => state.set('loading', true),
+        // success handler
+        (state, action) => state.set('loading', false).set('error', null).set('data', fromJS(action.payload)),
+        // error handler
+        (state, action) => state.set('loading', false).set('error', action.payload))
+    getAsyncData() {
+    }
+
+    .getAsyncData.REQUEST === 'GET_ASYNC_DATA_REQUEST';
+    .getAsyncData.SUCCESS === 'GET_ASYNC_DATA_SUCCESS';
+    .getAsyncData.FAILURE === 'GET_ASYNC_DATA_FAILURE';
+
+
+    .getAsyncData(payload) === { type: 'GET_ASYNC_DATA_REQUEST', payload } // the same as a .request()
+    .getAsyncData.request(payload) === { type: 'GET_ASYNC_DATA_REQUEST', payload };
+    .getAsyncData.success(payload) === { type: 'GET_ASYNC_DATA_SUCCESS', payload };
+    .getAsyncData.failure(payload) === { type: 'GET_ASYNC_DATA_FAILURE', payload };
+```
+
+###@SagaReduxFormAction
+```javascript
+    @AsyncAction(
+        // ActionType
+        'REDUX_FORM_ACTION',
+        // request handler
+        (state, action) => state.set('loading', true),
+        // success handler
+        (state, action) => state.set('loading', false).set('error', null).set('data', fromJS(action.payload)),
+        // error handler
+        (state, action) => state.set('loading', false).set('error', action.payload))
+    reduxFormAction() {
+    }
+
+    .getAsyncData.REQUEST === 'REDUX_FORM_ACTION_REQUEST';
+    .getAsyncData.SUCCESS === 'REDUX_FORM_ACTION_SUCCESS';
+    .getAsyncData.FAILURE === 'REDUX_FORM_ACTION_FAILURE';
+
+    .getAsyncData(payload) === PROMISE // It is handled inside library, no need to be cared about
+
+    .getAsyncData.request(payload) === { type: 'REDUX_FORM_ACTION_REQUEST', payload };
+    .getAsyncData.success(payload) === { type: 'REDUX_FORM_ACTION_SUCCESS', payload };
+    .getAsyncData.failure(payload) === { type: 'REDUX_FORM_ACTION_FAILURE', payload };
+```
+
+###@Reducer
+```javascript
+    This decorator for class, create a property "_reducers" to store sub reducers,
+    and added method "reducer", which should be combined with others and included in app
+
+    @Reducer
+    class Clazz {}
+
+    Clazz._reducers // inner property to store all sub reducers
+    Clazz.reducer => (state, action) => { return newState } // default redux reducer
 ```
