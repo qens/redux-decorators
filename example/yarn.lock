@@ -4884,9 +4884,9 @@ redux-saga@^0.16.0:
   version "0.16.0"
   resolved "https://registry.yarnpkg.com/redux-saga/-/redux-saga-0.16.0.tgz#0a231db0a1489301dd980f6f2f88d8ced418f724"
 
-redux-via-decorators@^0.0.3:
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/redux-via-decorators/-/redux-via-decorators-0.0.3.tgz#ce83ec96ed59fd3cfed2c56937308015aa4b149c"
+redux-via-decorators@^0.0.4:
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/redux-via-decorators/-/redux-via-decorators-0.0.4.tgz#d46c2d04d5e6b356d2159fcb95edd57749c3f399"
   dependencies:
     redux "^3.7.2"
     redux-form "^7.2.0"
