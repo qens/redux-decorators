@@ -47,9 +47,9 @@ class WithoutPage extends React.PureComponent {
 
 }
 
-const WithoutPageForm = reduxForm({
+const WithPageForm = reduxForm({
     form: reducerName
-})(WithoutPage);
+})(WithPage);
 
 export default connect((rootState, props) => {
     const state = rootState[reducerName];
@@ -67,4 +67,4 @@ export default connect((rootState, props) => {
         onSubmit: withReducer.login,
         triggerAction: bindActionCreators(withReducer.trigger, dispatch)
     };
-})(WithoutPageForm);
+})(WithPageForm);

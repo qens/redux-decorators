@@ -16,12 +16,12 @@ class WithReducer {
     trigger() {
     }
 
-    @AsyncAction(`${reducerName}/GET_DATA`, (state, aciton) => state.set('loading', true),
+    @AsyncAction(`${reducerName}/GET_DATA`, (state) => state.set('loading', true),
         (state, action) => state.set('data', action.payload).set('loading', false).set('error', null),
         (state, action) => state.set('error', action.payload).set('loading', false))
     getData() {}
 
-    @SagaReduxFormAction(`${reducerName}/LOGIN`, (state, action) => state.set('loading', true),
+    @SagaReduxFormAction(`${reducerName}/LOGIN`, (state) => state.set('loading', true),
         (state, action) => state.set('username', action.payload).set('loading', false).set('error', null),
         (state, action) => state.set('loading', false).set('error', action.payload))
     login() {
