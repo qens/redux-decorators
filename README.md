@@ -148,7 +148,7 @@ Just create a service as a class
 ### @SagaReduxFormAction
 The idea of this decorator comes from https://github.com/mhssmnn/redux-form-saga, more information could be found there.
 ```javascript
-    @AsyncAction(
+    @SagaReduxFormAction(
         // ActionType
         'REDUX_FORM_ACTION',
         // request handler
@@ -160,15 +160,15 @@ The idea of this decorator comes from https://github.com/mhssmnn/redux-form-saga
     reduxFormAction() {
     }
 
-    .getAsyncData.REQUEST === 'REDUX_FORM_ACTION_REQUEST';
-    .getAsyncData.SUCCESS === 'REDUX_FORM_ACTION_SUCCESS';
-    .getAsyncData.FAILURE === 'REDUX_FORM_ACTION_FAILURE';
+    .reduxFormAction.REQUEST === 'REDUX_FORM_ACTION_REQUEST';
+    .reduxFormAction.SUCCESS === 'REDUX_FORM_ACTION_SUCCESS';
+    .reduxFormAction.FAILURE === 'REDUX_FORM_ACTION_FAILURE';
 
-    .getAsyncData(payload) === PROMISE // It is handled inside library, no need to be cared about
+    .reduxFormAction(payload) === PROMISE // It is handled inside library, no need to be cared about
 
-    .getAsyncData.request(payload) === { type: 'REDUX_FORM_ACTION_REQUEST', payload };
-    .getAsyncData.success(payload) === { type: 'REDUX_FORM_ACTION_SUCCESS', payload };
-    .getAsyncData.failure(payload) === { type: 'REDUX_FORM_ACTION_FAILURE', payload };
+    .reduxFormAction.request(payload) === { type: 'REDUX_FORM_ACTION_REQUEST', payload };
+    .reduxFormAction.success(payload) === { type: 'REDUX_FORM_ACTION_SUCCESS', payload };
+    .reduxFormAction.failure(payload) === { type: 'REDUX_FORM_ACTION_FAILURE', payload };
 ```
 
 ### @Reducer
